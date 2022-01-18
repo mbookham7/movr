@@ -1,0 +1,53 @@
+# Deployment object
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movr-deployment
+  labels:
+    app: movr-app
+spec:
+  selector:
+    matchLabels:
+      app: movr-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: movr-app
+    spec:
+      containers:
+        - image: mikebookhamcap/movr-flask:v3
+          imagePullPolicy: Always
+          name: movr-app
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: movr-db-uri
+            - secretRef:
+                name: maps-api-key
+            - secretRef:
+                name: movr-port-num
+            - secretRef:
+                name: movr-region
+            - secretRef:
+                name: movr-debug            
+          args: ["gunicorn", "-c", "/web/gunicorn.py", "server:app"]
+---
+# Service object
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: movr-app
+  name: movr-app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8000
+    name: http
+    nodePort: 30062
+  selector:
+    app: movr-app
+  type: NodePort
