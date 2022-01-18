@@ -2,7 +2,7 @@ SET sql_safe_updates = FALSE;
 
 DROP DATABASE IF EXISTS movr CASCADE;
 
-CREATE DATABASE movr PRIMARY REGION "gcp-us-east1" REGIONS "gcp-us-east1", "gcp-europe-west1", "gcp-us-west1";
+CREATE DATABASE movr PRIMARY REGION "eastus" REGIONS "eastus", "northeneurope", "westus";
 
 USE movr;
 

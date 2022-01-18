@@ -11,6 +11,6 @@ class Config:
     DB_URI = os.environ['DB_URI']
     REGION = os.environ['REGION']
     PREFERRED_URL_SCHEME = ('https', 'http')[DEBUG == 'True']
-    CITY_MAP = {'gcp-us-east1': ['new york', 'boston', 'washington dc'], 
-                'gcp-us-west1': ['san francisco', 'seattle', 'los angeles'], 
-                'gcp-europe-west1': ['amsterdam', 'paris', 'rome']}
+    CITY_MAP = {'eastus': ['new york', 'boston', 'washington dc'], 
+                'westus': ['san francisco', 'seattle', 'los angeles'], 
+                'northeneurope': ['amsterdam', 'paris', 'rome']}
