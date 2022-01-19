@@ -5,3 +5,4 @@ flaskenv/*
 .idea/*
 certs/
 movr.yaml
+.env
